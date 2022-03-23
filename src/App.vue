@@ -13,13 +13,12 @@
       GuacClient
     },
 
-    // http://localhost:8081/?scheme=rdp&hostname=10.13.37.42&port=3390&ignore-cert=true'
     data() {
       return {
         connect: false,
         scheme: 'rdp',
-        hostname: '10.13.37.42',
-        port: '3390',
+        hostname: '',
+        port: '',
         user: '',
         pass: '',
         ignoreCert: true,
@@ -29,10 +28,14 @@
     },
     computed: {
       queryObj() {
+        const urlParams = new URLSearchParams(window.location.search)
         return {
           scheme: this.scheme,
-          hostname: this.hostname,
-          port: this.port,
+          //scheme: urlParams.get("scheme"),
+          //hostname: this.hostname,
+          hostname: urlParams.get("hostname"),
+          //port: this.port,
+          port: urlParams.get("port"),
           'ignore-cert': this.ignoreCert,
           security: this.security,
           username: this.user,
