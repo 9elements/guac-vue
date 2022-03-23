@@ -1,67 +1,7 @@
 <template>
-    <div class="container">
-        <a style="position: fixed;" href="https://github.com/wwt/guac-vue">
-            <img width="149" height="149"
-                 src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149"
-                 class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
-        </a>
-        <div id="app" v-if="!connect">
-            <h1>Vue Guacamole client example</h1>
-            <p>Enter connection information to connect</p>
-
-            <div class="field">
-                <label for="scheme">Scheme/Protocol</label>
-                <input type="text" v-model="scheme" id="scheme">
-            </div>
-
-            <div class="field">
-                <label for="hostname">Hostname or IP Address</label>
-                <input type="text" v-model="hostname" id="hostname">
-            </div>
-
-            <div class="field">
-                <label for="port">Port (if not default)</label>
-                <input type="text" v-model="port" id="port">
-            </div>
-
-            <div class="field">
-                <label for="user">User name</label>
-                <input type="text" v-model="user" id="user">
-            </div>
-
-            <div class="field">
-                <label for="pass">Password</label>
-                <input type="password" v-model="pass" id="pass">
-            </div>
-
-            <div class="field">
-                <label for="ignorecert">Ignore Certificate</label>
-                <span>
-              <input type="checkbox" v-model="ignoreCert" id="ignorecert">
-            </span>
-            </div>
-
-            <div class="field">
-                <label for="nla">Security</label>
-                <input type="text" v-model="security" id="nla" placeholder="type nla here for Network Level Authentication">
-            </div>
-
-            <div class="field">
-                <label>Query string</label>
-                <span class="pl-1">{{scrubbedQuery}}</span>
-            </div>
-
-            <div class="field">
-                <label for="forcehttp">Force HTTP Tunnel</label>
-                <span><input type="checkbox" v-model="forceHttp" id="forcehttp"></span>
-            </div>
-
-            <div class="center">
-                <button class="connect" @click="doConnect()">Connect</button>
-            </div>
-        </div>
-        <guac-client v-else :query="query" :force-http="forceHttp"/>
-    </div>
+  <div class="container">
+    <guac-client :query="query" :force-http="forceHttp" />
+  </div>
 </template>
 
 <script>
@@ -72,13 +12,14 @@
     components: {
       GuacClient
     },
+
+    // http://localhost:8081/?scheme=rdp&hostname=10.13.37.42&port=3390&ignore-cert=true'
     data() {
       return {
         connect: false,
-
-        scheme: 'telnet',
-        hostname: 'towel.blinkenlights.nl',
-        port: '',
+        scheme: 'rdp',
+        hostname: '10.13.37.42',
+        port: '3390',
         user: '',
         pass: '',
         ignoreCert: true,
