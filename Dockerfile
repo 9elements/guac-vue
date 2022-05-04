@@ -10,4 +10,4 @@ RUN mkdir /app
 COPY --from=build-stage /app/dist /app
 COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 8081/tcp
+EXPOSE 8080/tcp
