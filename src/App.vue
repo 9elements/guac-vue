@@ -17,7 +17,7 @@
       return {
         connect: false,
         scheme: 'rdp',
-        hostname: '',
+        hostname: 'localhost',
         port: '',
         user: '',
         pass: '',
@@ -29,17 +29,29 @@
     computed: {
       queryObj() {
         const urlParams = new URLSearchParams(window.location.search)
+        let scheme = urlParams.get("scheme")
+        if(!scheme) {
+          scheme = this.scheme
+        }
+        let hostname = urlParams.get("hostname")
+        if(!hostname) {
+          hostname = this.hostname
+        }
+        let port = urlParams.get("port")
+        if(!port) {
+          port = this.port
+        }
+
         return {
-          scheme: this.scheme,
-          //scheme: urlParams.get("scheme"),
-          //hostname: this.hostname,
-          hostname: urlParams.get("hostname"),
-          //port: this.port,
-          port: urlParams.get("port"),
+          scheme: scheme,
+          hostname: hostname,
+          port: port,
           'ignore-cert': this.ignoreCert,
           security: this.security,
           username: this.user,
-          password: this.pass
+          password: this.pass,
+          width: 1553,
+          height: 874,
         }
       },
       query() {
