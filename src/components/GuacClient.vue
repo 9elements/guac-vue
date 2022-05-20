@@ -87,14 +87,11 @@
         if (this.display.getWidth() !== width || this.display.getHeight() !== height) {
           this.client.sendSize(width, height)
         }
-        // setting timeout so display has time to get the correct size
-        setTimeout(() => {
-          const scale = Math.min(
-                  elm.clientWidth / Math.max(this.display.getWidth(), 1),
-                  elm.clientHeight / Math.max(this.display.getHeight(), 1)
-          )
-          this.display.scale(scale)
-        }, 100)
+        const scale = Math.min(
+                elm.clientWidth / Math.max(this.display.getWidth(), 1),
+                elm.clientHeight / Math.max(this.display.getHeight(), 1)
+        )
+        this.display.scale(scale)
       },
       connect(query) {
         let tunnel
@@ -241,10 +238,10 @@
         this.keyboard = new Guacamole.Keyboard(displayElm);
         this.installKeyboard()
         this.mouse.onmousedown = this.mouse.onmouseup = this.mouse.onmousemove = this.handleMouseState
-        setTimeout(() => {
+        setInterval(() => {
           this.resize()
           displayElm.focus()
-        }, 1000); // $nextTick wasn't enough
+        }, 100); // $nextTick wasn't enough
       },
       installKeyboard() {
         this.keyboard.onkeydown = keysym => {
