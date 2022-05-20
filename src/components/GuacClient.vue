@@ -11,7 +11,6 @@
   import GuacMouse from '@/lib/GuacMouse'
   import states from '@/lib/states'
   import clipboard from '@/lib/clipboard'
-  import Modal from '@/components/Modal'
 
   Guacamole.Mouse = GuacMouse.mouse
 
@@ -19,9 +18,6 @@
   const httpUrl = `http://${location.host}/tunnel`
 
   export default {
-    components: {
-      Modal
-    },
     props: {
       query: {
         type: String,
